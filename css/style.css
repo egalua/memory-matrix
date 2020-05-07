@@ -1,0 +1,493 @@
+.container{
+    /* Определение размеров по контейнеру для безопасной вставки на страницы */
+    max-width: 660px;
+    max-height: 720px;
+
+    width: 88vmin;
+    height: 96vmin;
+    margin: auto;
+
+    /*
+        height = (12/11) * width
+        width = (11/12) * height
+    */
+}
+.memory-box{
+    margin: auto;
+
+    display: grid;
+
+    width: 100%;
+    height: 100%;
+
+    padding-top: 11.428571428571428571428571428571%;
+    padding-right: 2.2857142857142857142857142857143%;
+    padding-left: 2.2857142857142857142857142857143%;
+    padding-bottom: 5.7142857142857142857142857142857%;
+
+    position: relative;
+
+    border: 5px solid #101907;
+    border-radius: 15px;
+    
+    background-image: url("../img/matrix.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+
+    box-sizing: border-box;
+}
+.memory-box__matrix{
+    box-sizing: border-box;
+    display: grid;
+    margin: auto;
+
+    background: transparent;
+    border-radius: 10px;
+
+    width: 97.26443768996960486322188449848%;
+    height: 100.16386181769238112975445768312%;
+}
+.memory-box__matrix_not-active{
+    display: none;
+}
+.memory-box__matrix-cell{
+    box-sizing: border-box;
+    border: 1px solid silver;
+
+    width: 93.75%;
+    height: 93.75%;
+    margin: 2px;
+
+    background: #2E2E2E;
+    border-radius: 12%;
+    
+    display :none;
+}
+/* ------------ title ------------ */
+.memory-box__title{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-around;
+
+    font-size: 3vmin;
+    color: #cafeda;
+    font-weight: bold;
+
+}
+.memory-box__title_not-active{
+    display: none;
+}
+.memory-box__tiles,
+.memory-box__trials,
+.memory-box__score{
+    
+    border-radius: 12px;
+}
+.memory-box__tiles{
+    max-width: 90px;
+    width: 11vmin;
+}
+.memory-box__trials{
+    max-width: 100px;
+    width: 12.3vmin;
+}
+.memory-box__score{
+    max-width: 120px;
+    width: 15.3vmin;
+}
+.memory-box__score-val-bonus{
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+.memory-box__score-val-bonus_not-active{
+    display: none;
+}
+.memory-box__tiles-sign,
+.memory-box__tiles-val,
+.memory-box__trials-sign,
+.memory-box__trials-val,
+.memory-box__score-sign,
+.memory-box__score-val{
+    background: black;
+    position: relative;
+}
+
+/* ------------ start button ------------ */
+.memory-box__start-button{
+    display: flex;
+
+    width: 30.395136778115501519756838905775%;
+    height: 12.520835452745584449122367689984%;
+
+    box-sizing: border-box;
+    border: 1px solid grey;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    font-size: 4.8vmin;
+    font-weight: bold;
+    color: #a9f5cf;
+
+    /* background: #2E2E2E; */
+    background: black;
+    border-radius: 10px;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-box__start-button-cursor{
+    animation-duration: 1s;
+    animation-name: cur;
+    animation-iteration-count: infinite;
+    animation-timing-function: step-start;
+    
+}
+@keyframes cur{
+    from{
+        color: transparent;
+    }
+    50%{
+        color: #a9f5cf;
+    }
+    to{
+        color: transparent;
+    }
+}
+
+.memory-box__start-button_not-active{
+    display: none;
+}
+.memory-box__start-button:hover{
+    cursor: pointer;
+}
+/* ------------ messages ------------ */
+.memory-box__next-level{
+    display: flex;
+
+    width: 30.395136778115501519756838905775%;
+    height: 18.780724090817321461828960815584%;
+
+    box-sizing: border-box;
+    border: 1px solid grey;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    font-size: 3.5vmin;
+    font-weight: bold;
+    /* color: #67f8f1; */
+    color: #cafeda;
+
+    background: #2E2E2E;
+    border-radius: 10px;
+    
+    align-items: center;
+    justify-content: center;
+}
+.memory-box__next-level-points_not-active{
+    display: none;
+}
+
+.memory-box__points-cnt,
+.memory-box__tiles-cnt{
+    padding-left: 10px;
+    text-align: right;
+}
+
+.memory-box__game-over{
+    display: flex;
+
+    width: 41.033434650455927051671732522796%;
+    height: 35.99638784073319946850550822987%;
+
+    box-sizing: border-box;
+    border: 1px solid grey;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    font-size: 3vmin;
+    font-weight: bold;
+    /* color: #67f8f1; */
+    color: #cafeda;
+
+    background: #2E2E2E;
+    border-radius: 10px;
+    
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+}
+.memory-box__game-over caption{
+    padding-bottom: 2vmin;
+}
+
+.memory-box__restart-button{
+
+    width: 90.66765393667619936305973109485%;
+    height: 90.257648000694107578787125881931%;
+
+    box-sizing: border-box;
+    
+    border: 1px solid silver;
+    border-radius: 5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    
+    background: black;
+    color: #a9f5cf;
+    
+    font-size: 2.8vmin;
+    
+    cursor: pointer;
+    /*#67f8f1*/
+
+}
+.memory-box__restart-button > span{
+    text-align: center;
+}
+
+.memory-box__total-score,
+.memory-box__max-level{
+    text-align: right;
+    padding-left: 4px;
+}
+
+.memory-box__next-level_not-active{
+    display: none;
+}
+.memory-box__game-over_not-active{
+    display: none;
+}
+.memory-box__game-over-up_not-active{
+    display: none;
+}
+.memory-box__game-over-end_not-active{
+    display: none;
+}
+
+/* ------------- classes open tile ------------- */
+.memory-box__matrix-cell_tile{
+    background: #67f8f1;
+    /* background: #cafeda; */
+    /* background: #a9f5cf; */
+    /* background: #48969a; */
+}
+.memory-box__matrix-cell_no-tile{
+    /* background: #ff6e01; */
+    background: #f83c1a;
+}
+
+/* ------------- matrix size rules ------------- */
+.memory-box__matrix_3x3{
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+
+    width: 29.375%;
+    height: 29.375%;
+    
+}
+.memory-box__matrix_3x3 > .memory-box__matrix-cell:nth-child(-n+9){
+    display: block;
+}
+
+.memory-box__matrix_3x4{
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto;
+
+    width: 39.0625%;
+    height: 29.375%;
+    
+}
+.memory-box__matrix_3x4 > .memory-box__matrix-cell:nth-child(-n+12){
+    display: block;
+}
+
+.memory-box__matrix_4x4{
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    
+    width: 39.0625%;
+    height: 39.0625%;
+}
+.memory-box__matrix_4x4 > .memory-box__matrix-cell:nth-child(-n+16){
+    display: block;
+}
+
+.memory-box__matrix_4x5{
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    
+    width: 48.75%;
+    height: 39.0625%;
+}
+.memory-box__matrix_4x5 > .memory-box__matrix-cell:nth-child(-n+20){
+    display: block;
+}
+
+.memory-box__matrix_5x5{
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+
+    width: 48.75%;
+    height: 48.75%;
+    
+}
+.memory-box__matrix_5x5 > .memory-box__matrix-cell:nth-child(-n+25){
+    display: block;
+}
+
+.memory-box__matrix_5x6{
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+ 
+    width: 58.4375%;
+    height: 48.75%;
+}
+.memory-box__matrix_5x6 > .memory-box__matrix-cell:nth-child(-n+30){
+    display: block;
+}
+
+.memory-box__matrix_6x6{
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    
+    width: 58.4375%;
+    height: 58.4375%;
+}
+.memory-box__matrix_6x6 > .memory-box__matrix-cell:nth-child(-n+36){
+    display: block;
+}
+
+.memory-box__matrix_6x7{
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    
+    width: 68.125%;
+    height: 58.4375%;
+}
+.memory-box__matrix_6x7 > .memory-box__matrix-cell:nth-child(-n+42){
+    display: block;
+}
+
+.memory-box__matrix_7x7{
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    
+    width: 68.125%;
+    height: 68.125%;
+}
+.memory-box__matrix_7x7 > .memory-box__matrix-cell:nth-child(-n+49){
+    display: block;
+}
+
+.memory-box__matrix_7x8{
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    
+    width: 77.8125%;
+    height: 68.125%;
+}
+.memory-box__matrix_7x8 > .memory-box__matrix-cell:nth-child(-n+56){
+    display: block;
+}
+
+.memory-box__matrix_8x8{
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto;
+    
+    width: 77.8125%;
+    height: 77.8125%;
+}
+.memory-box__matrix_8x8 > .memory-box__matrix-cell:nth-child(-n+64){
+    display: block;
+}
+
+.memory-box__matrix_8x9{
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto;
+    
+    width: 87.5%;
+    height: 77.8125%;
+}
+.memory-box__matrix_8x9 > .memory-box__matrix-cell:nth-child(-n+72){
+    display: block;
+}
+
+.memory-box__matrix_9x9{
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto;
+    
+    width: 87.5%;
+    height: 87.5%;
+}
+.memory-box__matrix_9x9 > .memory-box__matrix-cell:nth-child(-n+81){
+    display: block;
+}
+
+.memory-box__matrix_9x10{
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto;
+    
+    width: 97.1875%;
+    height: 87.5%;
+}
+.memory-box__matrix_9x10 > .memory-box__matrix-cell:nth-child(-n+90){
+    display: block;
+}
+
+.memory-box__matrix_10x10{
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    
+    width: 97.1875%;
+    height: 97.1875%;
+}
+.memory-box__matrix_10x10 > .memory-box__matrix-cell:nth-child(-n+100){
+    display: block;
+}
+
+/* Устройства с большим экраном (компьютеры, 1200px и выше) */
+@media (min-width: 1200px) {
+
+    .memory-box__title{
+        font-size: 24px;
+    }
+    .memory-box__start-button{
+        font-size: 38px;
+    }
+    .memory-box__next-level{
+        font-size: 28px;
+    }
+    .memory-box__game-over{
+        font-size: 24px;
+    }
+    .memory-box__restart-button{
+        font-size: 22px;
+    }
+
+}
