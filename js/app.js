@@ -175,7 +175,8 @@ let memoryMatrix = (()=>{
                 self.showElement(bonusFild, 'memory-box__next-level-points_not-active');
                 // показать "level up" сообщение
                 self.showElement(self.nextLevel, 'memory-box__next-level_not-active');
-                
+                // убрать поле с плитками
+                self.hideElement(self.matrix, 'memory-box__matrix_not-active');
                 // убрать сообщение через 2 секунды и вывести новое поле и шапку
                 setTimeout(() => {
                     // обновить матрицу
@@ -188,7 +189,9 @@ let memoryMatrix = (()=>{
                     self.hideElement(self.nextLevel, 'memory-box__next-level_not-active');
                     // убрать бонус
                     self.hideBonus();
-                    
+                    // показать поле с плитками
+                    self.showElement(self.matrix, 'memory-box__matrix_not-active');
+
                     // показать скрытые плитки через 1 секунду
                     setTimeout(() => {
                         let matrixSize = {rows: state.rows, cols: state.cols};
@@ -253,6 +256,10 @@ let memoryMatrix = (()=>{
                         self.hideElement(endMessage, 'memory-box__game-over-end_not-active');
                         self.showElement(upMessage, 'memory-box__game-over-up_not-active');
                     }
+
+                    // убрать поле с плитками
+                    self.hideElement(self.matrix, 'memory-box__matrix_not-active');
+
                     self.showElement(self.gameOver, 'memory-box__game-over_not-active');
                     self.removeBlockOperation();
                 }, 2000);
@@ -280,6 +287,9 @@ let memoryMatrix = (()=>{
                 setTimeout(() => {
                     self.showElement(self.nextLevel, 'memory-box__next-level_not-active');
 
+                    // убрать поле с плитками
+                    self.hideElement(self.matrix, 'memory-box__matrix_not-active');
+
                     // скрыть сообщение next-level и показать игровое поле
                     setTimeout(() => {
                         
@@ -290,6 +300,9 @@ let memoryMatrix = (()=>{
                         
                         self.clearTiles();
                         self.setMatrix(self.getMatrixSizeClass(state.rows, state.cols));
+
+                        // показать поле с плитками
+                        self.showElement(self.matrix, 'memory-box__matrix_not-active');
 
                         // показать плитки
                         setTimeout(() => {
@@ -304,7 +317,7 @@ let memoryMatrix = (()=>{
                         }, 1000);
 
                     }, 2000);
-                }, 1000);
+                }, 1500);
             }, 500);
         }
         /**
@@ -328,13 +341,20 @@ let memoryMatrix = (()=>{
                     self.showElement(self.nextLevel, 'memory-box__next-level_not-active');
                     self.clearTiles();
 
+                    // убрать поле с плитками
+                    self.hideElement(self.matrix, 'memory-box__matrix_not-active');
+
                     // скрыть сообщение и показать новое поле
                     setTimeout(() => {
                         // изменить значения полей score, trials, tiles в "шапке"
                         this.writeTitle(state.totalTiles, state.trials, state.score);
 
                         self.hideElement(self.nextLevel, 'memory-box__next-level_not-active');
-                        self.setMatrix(self.getMatrixSizeClass(state.rows, state.cols));    
+                        self.setMatrix(self.getMatrixSizeClass(state.rows, state.cols)); 
+                        
+                        // показать поле с плитками
+                        self.showElement(self.matrix, 'memory-box__matrix_not-active');
+
                         // показать плитки (предпоказ)
                         setTimeout(() => { 
                             let matrixSize = {rows: state.rows, cols: state.cols};
@@ -350,7 +370,7 @@ let memoryMatrix = (()=>{
                         }, 1000);
 
                     }, 2000);
-                }, 1000);
+                }, 1500);
             }, 500);
 
         }
@@ -958,7 +978,7 @@ let memoryMatrix = (()=>{
              */
             this.clickTileHandler = function(event){ 
                 let target = event.target;
-
+                
                 // ячейка матрицы в которой может быть плитка
                 let tileCell = getTarget(target, 'memory-box__matrix-cell');
                 // матрица
