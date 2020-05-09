@@ -30,12 +30,18 @@
     border: 5px solid #101907;
     border-radius: 15px;
     
-    background-image: url("../img/matrix.jpg");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
-
     box-sizing: border-box;
+}
+.memory-box__canvas{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
 }
 .memory-box__matrix{
     box-sizing: border-box;
@@ -67,14 +73,15 @@
 /* ------------ title ------------ */
 .memory-box__title{
     position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
+    top: 0px;
+    left: 0px;
+    right: 0px;
 
     display: flex;
     justify-content: space-around;
 
     font-size: 3vmin;
+
     color: #cafeda;
     font-weight: bold;
 
@@ -103,7 +110,7 @@
 .memory-box__score-val-bonus{
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 0px;
 }
 .memory-box__score-val-bonus_not-active{
     display: none;
@@ -129,10 +136,10 @@
     border: 1px solid grey;
 
     position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     margin: auto;
 
     font-size: 4.8vmin;
@@ -183,10 +190,10 @@
     border: 1px solid grey;
 
     position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     margin: auto;
 
     font-size: 3.5vmin;
@@ -220,10 +227,10 @@
     border: 1px solid grey;
 
     position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     margin: auto;
 
     font-size: 3vmin;
@@ -472,7 +479,7 @@
 }
 
 /* Устройства с большим экраном (компьютеры, 1200px и выше) */
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (min-height: 720px) {
 
     .memory-box__title{
         font-size: 24px;

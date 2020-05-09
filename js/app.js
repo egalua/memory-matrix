@@ -995,12 +995,120 @@ let memoryMatrix = (()=>{
             } // end of clickTileHandler
         } // end of createHandlers
     }
+// ---------------------------------------------------
+    /**
+     * Инициализация фона
+     * @param {Number} maxWidth максимально допустимая ширина контейнера игры
+     * @param {Number} maxHeight максимально допустимая высота контейнера игры
+     * @param {HTMLElement} gameBox основной блок с интерфейсом игры
+     */
+    function initBackground(maxWidth, maxHeight, gameBox){
+        // код для отрисовки фона был успешно натырин с просторов интернета и слегка допилин под свои нужды
+        // источник: https://pastebin.com/3WyJD8Tc
+        let maxW = maxWidth + 'px';
+        let maxH = maxHeight + 'px';
+        
+        function setBackground(){
+            //.memory-box__canvas
+            let cnv = gameBox.querySelector('.memory-box__canvas');
+            let ctx = cnv.getContext("2d");
+
+            // размеры canvas определяем по контейнеру
+            cnv.width = Number.parseFloat(gameBox.clientWidth);
+            cnv.height = Number.parseFloat(gameBox.clientHeight);
+
+            // китайские символы
+            let chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+            //массив китайских символов
+            chinese = chinese.split("");
+
+            let font_size = 10;
+            let columns = cnv.width/font_size; //количество колонок для организации потоков символов
+            // массив "y" координат для отображения символов  (x == колонки, y == строки)
+            let drops = [];
+            // количество элементов массива соответствует числу колонок 
+            // инициализация массива "y" координат для отображения символов (начальное значение y координат ==1)
+            for(let x = 0; x < columns; x++)
+                drops[x] = 1; 
+
+            // нарисовать строку китайских символов
+            function draw(){
+                // черный полупрозрачный фон для холста, чтобы показать след
+                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+                ctx.fillRect(0, 0, cnv.width, cnv.height);
+                
+                // цвет текста
+                ctx.fillStyle = "#1eed3d";
+                ctx.font = font_size + "px arial";
+                // рисует строку с китайскими символами
+                // координату y (номер строки) берет из массива drops
+                // координата x (колонка) == i
+                for(let i = 0; i < drops.length; i++){
+                    // случайный символ из набора символов
+                    let text = chinese[Math.floor(Math.random()*chinese.length)];
+                    //x = i*font_size, y = drops[i]*font_size
+                    // "x" - колонка, "y" - строка 
+                    ctx.fillText(text, i*font_size, drops[i]*font_size);
+                    
+                    // случайное обнуление "y" координаты после заполнения всей области просмотра
+                    // каждый вызов функции draw увеличивает значение "у" координат внутри drops
+                    if(drops[i]*font_size > cnv.height && Math.random() > 0.975)
+                        drops[i] = 0;
+                    
+                    // инкремент "y" координаты
+                    drops[i]++;
+                }
+            } // end of draw
+            
+            //Двойное заполнение экрана
+            let boxHeight = Math.floor(cnv.height/font_size);
+            for(let i = 0; i < 2*boxHeight; i++){
+                draw();
+            }
+
+        } // end of initBackground
+
+        // инициализирует фоновую картинку для максимально допустимого разрешения
+        requestAnimationFrame(function(){
+            gameBox.style.visibility = 'hidden';
+            gameBox.style.width = maxW;
+            gameBox.style.height = maxH;
+            // блокирует интерфейс до полной отрисовки фона
+            if(!gameBox.classList.contains('js-blocked-operation')){
+                gameBox.classList.add('js-blocked-operation');
+            }
+            requestAnimationFrame(function(){
+                setBackground();
+                requestAnimationFrame(function(){
+                    gameBox.style.width = '';
+                    gameBox.style.height = '';
+                    gameBox.style.visibility = '';
+                    // снимает блокировку интерфейса
+                    gameBox.classList.remove('js-blocked-operation');
+                });
+            });
+
+        });
+    } //end of initBackground
 
     return {
-        init: function(gameClassName){ this.game = new Control(gameClassName); },
+        init: function(gameClassName){ 
+            this.game = new Control(gameClassName); 
+            
+            let style = window.getComputedStyle(this.game.box);
+            let maxWidth = Number.parseFloat(style.maxWidth);
+            let maxHeight = Number.parseFloat(style.maxHeight);
+
+            maxWidth = isNaN(maxWidth) ? 660: maxWidth;
+            maxHeight = isNaN(maxHeight) ? 720: maxHeight;
+
+            initBackground(maxWidth, maxHeight, this.game.box);
+        }
     };
 
 })();
 
 memoryMatrix.init('memory-box');
 memoryMatrix.game.start();
+
+
