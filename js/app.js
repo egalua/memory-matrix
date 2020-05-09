@@ -1085,6 +1085,7 @@ let memoryMatrix = (()=>{
                     gameBox.style.visibility = '';
                     // снимает блокировку интерфейса
                     gameBox.classList.remove('js-blocked-operation');
+                    gameBox.classList.remove('memory-box_loading');
                 });
             });
 
