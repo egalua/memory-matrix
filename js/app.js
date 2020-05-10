@@ -1066,7 +1066,7 @@ let memoryMatrix = (()=>{
                 draw();
             }
 
-            setInterval(draw, 33);
+            setInterval(requestAnimationFrame, 33, draw);
 
         } // end of initBackground
 
