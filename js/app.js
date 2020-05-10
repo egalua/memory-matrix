@@ -994,7 +994,7 @@ let memoryMatrix = (()=>{
                 }
             } // end of clickTileHandler
         } // end of createHandlers
-    }
+    } // end of control
 // ---------------------------------------------------
     /**
      * Инициализация фона
@@ -1065,6 +1065,8 @@ let memoryMatrix = (()=>{
             for(let i = 0; i < 2*boxHeight; i++){
                 draw();
             }
+
+            setInterval(draw, 33);
 
         } // end of initBackground
 
